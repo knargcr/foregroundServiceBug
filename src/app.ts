@@ -1,4 +1,5 @@
-import { createApp } from 'nativescript-vue';
-import Home from './components/Home.vue';
+import { createApp } from "nativescript-vue";
+import Antre from "./components/Antre.vue";
 
-createApp(Home).start();
+require("./services/foregroundService");
+createApp(Antre).start();
