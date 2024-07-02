@@ -1,17 +1,49 @@
 <template>
-  <Page>
-    <GridLayout backgroundColor="white" rows="*, *">
-      <Button row="0" @tap="startService">Start Service</Button>
-      <Button row="1" @tap="stopService">Stop Service</Button>
-    </GridLayout>
+  <Page @loaded="loaded">
+    <ActionBar class="bg-blue-gray-500 text-white" flat="true">
+      <Button text="Open Drawer" class="bg-red-500" @tap="openDrawer" />
+    </ActionBar>
+
+    <Drawer
+      ref="drawer"
+      :gestureHandlerOptions="{
+        failOffsetYStart: -10,
+        failOffsetYEnd: 10,
+      }"
+    >
+      <GridLayout
+        ref="drawerContent"
+        ~leftDrawer
+        width="70%"
+        rows="*, *, *"
+        backgroundColor="white"
+      >
+        <StackLayout>
+          <Button row="0" @tap="startService">Start Service</Button>
+          <Button row="1" @tap="stopService">Stop Service</Button>
+        </StackLayout>
+      </GridLayout>
+    </Drawer>
   </Page>
 </template>
 
 <script>
-import { Utils } from "@nativescript/core";
+import { StackLayout, Utils } from "@nativescript/core";
 
 export default {
   methods: {
+    loaded() {
+      setTimeout(() => {
+        this.startService();
+      }, 1000);
+    },
+    openDrawer() {
+      if (!this.$refs.drawer) {
+        return;
+      }
+
+      this.$refs.drawer.nativeView.toggle();
+    },
     startService() {
       let context = Utils.android.getApplicationContext();
       let serviceName = com.nativescript.location.ForegroundServiceVue3.class;

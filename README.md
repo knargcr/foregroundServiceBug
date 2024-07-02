@@ -48,8 +48,9 @@ System.err: ... 13 more
 You can reproduce the crash following the steps below:
 
 - Open app
-- Click start service button (Service starts)
-- Kill the app (Service continues running)
-- Reopen app
+- Click to open the drawer
+- Kill the app
+- Close the drawer by clicking outside
+- You won’t be able to open it again
 - Kill the app again
 - Crash!
