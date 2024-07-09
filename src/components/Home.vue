@@ -1,5 +1,5 @@
 <template>
-  <Page @loaded="loaded">
+  <Page>
     <ActionBar class="bg-blue-gray-500 text-white" flat="true">
       <Button text="Open Drawer" class="bg-red-500" @tap="openDrawer" />
     </ActionBar>
@@ -32,11 +32,6 @@ import { StackLayout, Utils } from "@nativescript/core";
 
 export default {
   methods: {
-    loaded() {
-      setTimeout(() => {
-        this.startService();
-      }, 1000);
-    },
     openDrawer() {
       if (!this.$refs.drawer) {
         return;
