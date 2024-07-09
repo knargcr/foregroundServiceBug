@@ -47,10 +47,11 @@ System.err: ... 13 more
 
 You can reproduce the crash following the steps below:
 
-- Open app
-- Click to open the drawer
-- Kill the app
-- Close the drawer by clicking outside
-- You won’t be able to open it again
-- Kill the app again
-- Crash!
+Step 1- Edit `node_modules/nativescript-vue/dist/plugins/navigation.js:42` as `if (!isReloading && view) {`
+Step 2- Build and run the app
+Step 3- Click the "Open drawer" button.
+Step 4- Click the "Start Service" button to start the service.
+Step 5- Kill the app (press the home button and swipe it away). Since it started a foreground service, the service continues to run.
+Step 6- Reopen the app.
+Step 7- Close the drawer by clicking outside of it.
+Step 8- The drawer cannot be opened anymore using the "Open drawer" button.
